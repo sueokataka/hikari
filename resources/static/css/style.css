@@ -1,0 +1,103 @@
+@CHARSET "UTF-8";
+
+body {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#header {
+	width: 1000px;
+	margin-bottom: 5px;
+	height: 60px;
+}
+
+#body2 {
+	width: 1000px;
+	margin-bottom: 5px;
+	margin-right: 3px;
+}
+
+#main {
+	width: 770px;
+	float: right;
+	margin-bottom: 5px;
+	margin-right: 3px;
+	height: 800px;
+	overflow: auto;
+}
+
+#side {
+	width: 220px;
+	float: left;
+	margin-bottom: 5px;
+	margin-left: 3px;
+	height: 800px;
+}
+
+#footer {
+	clear: both;
+	width: 1000px;
+	height: 50px;
+}
+
+p2 {
+	font-size: 50%;
+	color: red;
+}
+
+
+/*タブ切り替え全体のスタイル*/
+.tabs {
+	margin-top: 50px;
+	padding-bottom: 40px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	width: 770px;
+	margin: 0 auto;
+}
+
+/*タブのスタイル*/
+.tab_item {
+	width: calc(100%/ 12);
+	height: 50px;
+	border-bottom: 3px solid #5ab4bd;
+	background-color: #d9d9d9;
+	line-height: 50px;
+	font-size: 16px;
+	text-align: center;
+	color: #565656;
+	display: block;
+	float: left;
+	text-align: center;
+	font-weight: bold;
+	transition: all 0.2s ease;
+}
+
+.tab_item:hover {
+	opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+	display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+	display: none;
+	
+	clear: both;
+	overflow: hidden;
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#1:checked ~ #1_content, #2:checked ~ #2_content,
+	#3:checked ~ #3_content {
+	display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked+.tab_item {
+	background-color: #5ab4bd;
+	color: #fff;
+}

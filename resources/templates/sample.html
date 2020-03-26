@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+	name='viewport' />
+<meta name="viewport" content="width=device-width" />
+
+<!-- Bootstrap core CSS     -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="assets/css/paper-kit.css?v=2.1.0" rel="stylesheet" />
+
+<!--  CSS for Demo Purpose, don't include it in your project     -->
+<link href="assets/css/demo.css" rel="stylesheet" />
+
+<!--     Fonts and icons     -->
+<link
+	href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700'
+	rel='stylesheet' type='text/css'>
+<link
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+
+</head>
+<body>
+	
+	<p th:text=${top}></p>
+
+	<div class="row">
+		<div class="col-sm-3">
+			<form method="post" action="/sample">
+				<table>
+					<tr>
+						<td><p>日付</p></td>
+						<td><input type="text" class="form-control" name="date"></td>
+					</tr>
+					<tr>
+						<td><p>出費</p></td>
+						<td><input type="text" class="form-control" name="out"></td>
+					</tr>
+					<tr>
+						<td><p>収入</p></td>
+						<td><input type="text" class="form-control" name="income"></td>
+					</tr>
+					<tr>
+						<td><p>内訳</p></td>
+						<td><input type="text" class="form-control" name="in"></td>
+						<td><button type="submit" class="btn btn-default btn-round">Click</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+
+	<p th:text="${inputDB}"></p>
+	
+	<table>
+		<tr th:each="entity:${data}">
+			<td th:text="${entity.DATE}"></td>
+			<td th:text="${entity.BREAKDOWN}"></td>
+			<td th:text="@{'&#xa5;'+ ${entity.INCOME}}" align="right"><p></p></td>
+			<td th:text="@{'&#xa5;'+${entity.EXPENSE}}" align="right"></td>
+		</tr>
+	</table>
+	
+	<script type="text/javascript" th:inline="javascript">
+		//数値にカンマ表記
+		/*<![CDATA[*/
+		var num = '[[ ${test} ]]';
+		num = num.split(/(?=(?:\d{3})+$)/).join();
+		document.write(num);
+		/*]]>*/
+	</script>
+
+</body>
+</html>

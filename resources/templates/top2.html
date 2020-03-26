@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>TOP PAGE</title>
+<meta http-equiv="Content-Type" content="text/css; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" media="all" th:href="@{/css/style.css}"
+	href="../static/css/style.css" />
+<!-- jQuery -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- jQuery UI -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+
+</head>
+<body>
+	<header id="header">
+		<div>
+			<img src="/imgs/forexGo.png">
+		</div>
+	</header>
+
+	<div>
+		<form method="POST" th:action="@{/insert}" id="insertDB">
+			<table border="1" width="100%" CELLSPACING="0">
+				<tr background="palegreen">
+					<td align="center">お金持ち度</td>
+					<td align="center">達成率</td>
+					<td align="center">不労所得</td>
+					<td align="center">資産</td>
+					<td align="center">￥資産</td>
+					<td align="center">負債</td>
+					<td align="center">￥負債</td>
+					<td align="center">純資産</td>
+				</tr>
+				<tr>
+					<td align="center">100%</td>
+					<td align="center">50%</td>
+					<td align="center">¥10000</td>
+					<td align="center">資産⑴</td>
+					<td align="center">¥1000000</td>
+					<td align="center">負債⑴</td>
+					<td align="center">¥500000</td>
+					<td align="center">¥500000</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<br />
+	<!-- メインメニュー -->
+	<main id="main">
+	<div class="tabs">
+		<input id="1" type="radio" name="tab_item" checked> <label class="tab_item" for="1">1月</label> 
+		<input id="2"type="radio" name="tab_item"> <label class="tab_item"for="2">2月</label> 
+		<input id="3" type="radio"name="tab_item"> <label class="tab_item" for="3">3月</label>
+		<input id="all" type="radio" name="tab_item"><label
+			class="tab_item" for="design">4月</label> <input id="programming"
+			type="radio" name="tab_item"> <label class="tab_item"
+			for="design">5月</label> <input id="design" type="radio"
+			name="tab_item"> <label class="tab_item" for="design">6月</label>
+		<input id="all" type="radio" name="tab_item"> <label
+			class="tab_item" for="design">7月</label> <input id="programming"
+			type="radio" name="tab_item"> <label class="tab_item"
+			for="design">8月</label> <input id="design" type="radio"
+			name="tab_item"> <label class="tab_item" for="design">9月</label>
+		<input id="all" type="radio" name="tab_item"> <label
+			class="tab_item" for="design">10月</label> <input id="programming"
+			type="radio" name="tab_item"> <label class="tab_item"
+			for="design">11月</label> <input id="design" type="radio"
+			name="tab_item"> <label class="tab_item" for="design">12月</label>
+		<div class="tab_content" id="1_content">
+			<form method="get" action="/top">
+				<table border="1" CELLSPACING="0" align="left" width="85%">
+					<tr background="#98fb98">
+						<td width="45" align="center" class="allCheck">
+							<!--  ><input
+						id="btn_action" type="button" value="削除" th:field="*{checkedBox}"> -->
+							<input type="checkbox" name="checkBox" value="" id="allCheck">
+						</td>
+						<td align="center">日付</td>
+						<td align="center">カテゴリ</td>
+						<td align="center">内訳</td>
+						<td align="center">収入</td>
+						<td align="center">支出</td>
+
+					</tr>
+					<tr>
+						<td align="center"><input id="btn_action" type="button"
+							value="削除"></td>
+						<td align="center">当月1日表記</td>
+						<td align="right">-</td>
+						<td align="left">繰り越し</td>
+						<td align="right">-</td>
+						<td align="right">-</td>
+					</tr>
+					<tr th:each="entity:${timeline}">
+						<td align="center"><input type="checkbox" name="checkBox"
+							id="checkbox" th:value="${entity.getID()}"></td>
+						<td align="center"><a th:text="${entity.DATE}"></a></td>
+						<td align="right"><a th:text="${entity.SORT_CODE}"></a></td>
+						<td align="left"><a th:text="${entity.BREAKDOWN}"></a></td>
+						<td align="right"><a th:text="@{'&#xa5;'+ ${entity.INCOME}}"></a></td>
+						<td align="right"><a th:text="@{'&#xa5;'+${entity.EXPENSE}}"></a></td>
+				</table>
+				<table border="1" CELLSPACING="0" width="15%">
+					<tr>
+						<td align="center">残高</td>
+					</tr>
+					<tr>
+						<td align="right">¥繰越金額</td>
+					</tr>
+					<tr th:each="entityBalance:${Balance}" th:object="${entityBalance}">
+						<td align="right"><a th:text="*{'&#xa5;'+balance}"></a></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="tab_content" id="2_content">プログラミングの内容がここに入ります</div>
+		<div class="tab_content" id="3_content">デザインの内容がここに入ります</div>
+	</div>
+
+
+
+	</main>
+
+	<!-- サイドメニュー -->
+	<div id="side">
+		<table width="100%">
+			<tr>
+				<td><select name="" style="width: 150px">
+						<option value="">2018年</option>
+						<option value="">2019年</option>
+						<option value="">2020年</option>
+				</select></td>
+				<td ><button>検索</button></td>
+			</tr>
+		</table>
+		<br>・固定費予算【当月】<br>
+		<table border="1" width="100%" CELLSPACING="0">
+			<tr background="#98fb98">
+				<td align="center"><button>新規追加</button></td>
+				<td align="center">金額</td>
+			</tr>
+			<tr>
+				<td align="center">家賃</td>
+				<td align="right">¥30300</td>
+			</tr>
+			<tr>
+				<td align="center">Total</td>
+				<td align="right">¥30300</td>
+			</tr>
+		</table>
+		<br> ・調整金<br>
+		<table border="1" width="100%" CELLSPACING="0">
+			<tr background="#98fb98">
+				<td align="center"><button width="100%">新規追加</button></td>
+				<td align="center">金額</td>
+			</tr>
+			<tr>
+				<td align="center">じぶん銀行</td>
+				<td align="right">¥100000</td>
+			</tr>
+			<tr>
+				<td align="center">Total</td>
+				<td align="right">¥100000</td>
+			</tr>
+		</table>
+		<table width="100%">
+			<br>
+			<tr>
+				<td>・グラフ</td>
+			</tr>
+			<tr>
+				<td>・ForexGo!</td>
+			</tr>
+			<tr>
+				<td>・GTD</td>
+			</tr>
+			<tr>
+				<td>・ログアウト</td>
+			</tr>
+		</table>
+	</div>
+	<footer id="footer">
+		<p align="center">Copyright(C) UpperGain Co.,Ltd, All rights
+			reserved.</p>
+	</footer>
+</body>
+</html>
